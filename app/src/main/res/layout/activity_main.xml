@@ -14,13 +14,22 @@
         android:layout_height="64dp"
         android:id="@+id/iv"/>
 
+
     <com.technology.lpjxlove.myshortcut.ShortcutView
+        android:visibility="gone"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/shortcut"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_toRightOf="@+id/iv"
+        android:layout_toEndOf="@+id/iv"
+        android:layout_marginBottom="62dp">
     </com.technology.lpjxlove.myshortcut.ShortcutView>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycle_view">
+    </android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>

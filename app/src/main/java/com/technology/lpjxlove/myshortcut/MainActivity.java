@@ -19,6 +19,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,6 +35,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     private ImageView iv;
     private ShortcutView shortcutView;
+    private RecyclerView recyclerView;
     private Bitmap bitmap,b,c;
     private static final String ACTION_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
     private static final String KEY_DUPLICATE = "duplicate";
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iv= (ImageView) findViewById(R.id.iv);
+        recyclerView= (RecyclerView) findViewById(R.id.recycle_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),4));
+        recyclerView.setAdapter(new adapter());
+
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
