@@ -1,5 +1,7 @@
 package com.technology.lpjxlove.myshortcut;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,6 +25,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ShortcutView shortcutView;
     private RecyclerView recyclerView;
     private Bitmap bitmap,b,c;
+    private ImageView imageView;
     private static final String ACTION_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
     private static final String KEY_DUPLICATE = "duplicate";
     private static final String ACTION_CLEANER_SHORTCUT = "com.gmiles.cleaner.shortcut";
@@ -45,9 +50,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iv= (ImageView) findViewById(R.id.iv);
-        recyclerView= (RecyclerView) findViewById(R.id.recycle_view);
+        imageView= (ImageView) findViewById(R.id.imageView2);
+       /* recyclerView= (RecyclerView) findViewById(R.id.recycle_view);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),4));
         recyclerView.setAdapter(new adapter());
+*/
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setAnimation();
+            }
+        });
+
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +90,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+    private void setAnimation(){
+        ObjectAnimator animator=ObjectAnimator.ofFloat(imageView,"ScaleX",0f,1f);
+        ObjectAnimator animator1=ObjectAnimator.ofFloat(imageView,"ScaleY",0f,1f);
+        animator.setDuration(500);
+        //animator.start();
+        AnimatorSet set=new AnimatorSet();
+        set.setDuration(300);
+        set.setInterpolator(new AccelerateInterpolator());
+        set.playTogether(animator,animator1);
+        set.start();
+
+
+
+    }
+
+
+
 
     public Bitmap convertViewToBitmap(View view){
 

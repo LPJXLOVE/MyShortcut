@@ -25,11 +25,33 @@
         android:layout_toEndOf="@+id/iv"
         android:layout_marginBottom="62dp">
     </com.technology.lpjxlove.myshortcut.ShortcutView>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycle_view">
-    </android.support.v7.widget.RecyclerView>
+
+
+    <com.technology.lpjxlove.myshortcut.TestView
+        android:visibility="gone"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+    </com.technology.lpjxlove.myshortcut.TestView>
+
+    <ImageView
+        android:padding="4dp"
+        android:src="@drawable/circle_"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView2" />
+
+    <com.technology.lpjxlove.myshortcut.TestTwoView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </com.technology.lpjxlove.myshortcut.TestTwoView>
 
 
 </RelativeLayout>
