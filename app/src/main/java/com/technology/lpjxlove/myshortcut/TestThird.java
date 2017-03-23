@@ -36,11 +36,28 @@ public class TestThird extends FrameLayout {
             t.setDirectionY(-(r.nextInt(3)));
             addView(t);
         }
+        for (int i=0;i<3;i++){
+            TestTwoView t=new TestTwoView(getContext());
+            t.setDirectionX((r.nextInt(2)));
+            t.setDirectionY(-(r.nextInt(3)));
+            addView(t);
+        }
+        for (int i=0;i<3;i++){
+            TestTwoView t=new TestTwoView(getContext());
+            t.setDirectionX(-(r.nextInt(2)));
+            t.setDirectionY((r.nextInt(3)));
+            addView(t);
+        }
+
+
+
+
+
 
     }
 
     public void startAnim(){
-      for (int i=0;i<6;i++){
+      for (int i=0;i<12;i++){
           TestTwoView v = (TestTwoView) getChildAt(i);
           v.start();
 
