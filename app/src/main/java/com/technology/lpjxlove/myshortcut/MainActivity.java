@@ -62,11 +62,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        final TestTwoView testTwoView = (TestTwoView) findViewById(R.id.test_two);
+        testTwoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testTwoView.start();
+            }
+        });
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bitmap=convertViewToBitmap(shortcutView);
+             //   bitmap=convertViewToBitmap(shortcutView);
                /* BitmapDrawable drawable=new BitmapDrawable(getResources(),bitmap);
                 b=drawable.getBitmap().copy(Bitmap.Config.ARGB_8888,true);
 
@@ -75,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 b=BitmapFactory.decodeResource(getResources(),R.mipmap.play_);
              //   b=drawable.getBitmap().copy(Bitmap.Config.ARGB_8888,true);
                 c=drawBitmap(3);
+
+
+
 
 
 

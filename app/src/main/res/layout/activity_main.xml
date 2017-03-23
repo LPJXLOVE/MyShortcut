@@ -37,6 +37,7 @@
     </com.technology.lpjxlove.myshortcut.TestView>
 
     <ImageView
+        android:visibility="gone"
         android:padding="4dp"
         android:src="@drawable/circle_"
         android:layout_width="100dp"
@@ -46,11 +47,13 @@
         android:id="@+id/imageView2" />
 
     <com.technology.lpjxlove.myshortcut.TestTwoView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/test_two"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginTop="43dp">
     </com.technology.lpjxlove.myshortcut.TestTwoView>
 
 
