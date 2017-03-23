@@ -1,20 +1,14 @@
 package com.technology.lpjxlove.myshortcut;
 
 import android.animation.ValueAnimator;
-import android.app.Notification;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 /**
@@ -26,7 +20,32 @@ public class TestTwoView extends ImageView {
     private int padding;
     Bitmap bitmap;
     private float x, y;
+    private int directionX =1;
+
+    public int getDirectionY() {
+        return directionY;
+    }
+
+    public void setDirectionY(int directionY) {
+        this.directionY = directionY;
+    }
+
+    private int directionY =1;
+
+    public int getDirectionX() {
+        return directionX;
+    }
+
+    public void setDirectionX(int directionX) {
+        this.directionX = directionX;
+    }
+
     private ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+
+    public TestTwoView(Context context) {
+        super(context);
+        init();
+    }
 
     public TestTwoView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,7 +67,7 @@ public class TestTwoView extends ImageView {
         float p = animator.getAnimatedFraction();
 
         canvas.translate(x, y);
-        canvas.translate(p*x,p*y);
+        canvas.translate(-p*x* directionX,-p*y* directionY);
         canvas.rotate(p * 360);
         canvas.drawBitmap(bitmap,-x/4 , -y/4, mPaint);
 

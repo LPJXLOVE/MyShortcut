@@ -47,6 +47,7 @@
         android:id="@+id/imageView2" />
 
     <com.technology.lpjxlove.myshortcut.TestTwoView
+        android:visibility="gone"
         android:id="@+id/test_two"
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -55,6 +56,13 @@
         android:layout_alignStart="@+id/imageView2"
         android:layout_marginTop="43dp">
     </com.technology.lpjxlove.myshortcut.TestTwoView>
+    <com.technology.lpjxlove.myshortcut.TestThird
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/test_">
+    </com.technology.lpjxlove.myshortcut.TestThird>
+
+
 
 
 </RelativeLayout>
