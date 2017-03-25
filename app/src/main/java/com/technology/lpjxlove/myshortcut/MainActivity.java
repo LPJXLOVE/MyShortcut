@@ -66,12 +66,11 @@ public class MainActivity extends AppCompatActivity {
         testTwoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testTwoView.start();
+                testTwoView.start(0);
             }
         });
-      /*  TestThird third= (TestThird) findViewById(R.id.test_);
+        TestThird third= (TestThird) findViewById(R.id.test_third);
         third.startAnim();
-*/
 
 
         iv.setOnClickListener(new View.OnClickListener() {

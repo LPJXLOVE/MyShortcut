@@ -34,7 +34,7 @@ public class TestView1 extends View {
         super.onFinishInflate();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-       // mPaint.setColor(getResources().getColor(R.color.light_text_color));
+        mPaint.setColor(getResources().getColor(R.color.colorPrimary));
         mPaint2 = new Paint();
         mPaint2.setAntiAlias(true);
         mPaint2.setColor(Color.WHITE);
@@ -58,6 +58,7 @@ public class TestView1 extends View {
         canvas.drawBitmap(bitmap,0,0,mPaint2);
         mPaint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
         canvas.drawRect(0,0,getWidth(),getWidth(),mPaint2);
+        canvas.drawCircle(getWidth()/2,getWidth()/2,getWidth()/4,mPaint);
         invalidate();
 
     }

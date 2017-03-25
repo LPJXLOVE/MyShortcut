@@ -1,18 +1,24 @@
 package com.technology.lpjxlove.myshortcut;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import java.text.DecimalFormat;
+import java.util.Random;
 
 /**
  * Created by LPJXLOVE on 2017/3/22.
@@ -23,10 +29,29 @@ public class TestTwoView extends ImageView {
     private int padding;
     Bitmap bitmap;
     private float x, y;
-    private int directionX = 1;
+    private int angle = 1;
     private float speech;
     private int duration;
-    private double distance;
+    private float distance;
+    private TestThird parent;
+    private CanStartListener l;
+    boolean isRunning;
+
+    public CanStartListener getL() {
+        return l;
+    }
+
+    public void setL(CanStartListener l) {
+        this.l = l;
+    }
+
+    public TestThird getParentView() {
+        return parent;
+    }
+
+    public void setParent(TestThird parent) {
+        this.parent = parent;
+    }
 
     public int getDirectionY() {
         return directionY;
@@ -38,15 +63,16 @@ public class TestTwoView extends ImageView {
 
     private int directionY = 1;
 
-    public int getDirectionX() {
-        return directionX;
+    public int getAngle() {
+        return angle;
     }
 
-    public void setDirectionX(int directionX) {
-        this.directionX = directionX;
+    public void setAngle(int angle) {
+        this.angle = angle;
     }
 
     private ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+    private ValueAnimator animator2 = ValueAnimator.ofFloat(0f, 1f);
 
     public TestTwoView(Context context) {
         super(context);
@@ -60,44 +86,89 @@ public class TestTwoView extends ImageView {
 
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(Color.GREEN);
-        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.BLUE);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(getResources().getDimensionPixelOffset(R.dimen.strokwidth));
         padding = (int) getResources().getDimension(R.dimen.activity_vertical_margin);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.c);
+
     }
+
+
+
+
+
+
 
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float p = animator.getAnimatedFraction();
-
+        canvas.save();
         canvas.translate(x, y);
-        canvas.translate((float) (-p * distance* Math.cos(directionX)), (float) (-p * distance * Math.sin(directionY)));
-       //Toast.makeText(getContext(), ""+Math.cos(directionX), Toast.LENGTH_SHORT).show();
+        canvas.translate((float) (p * distance* Math.cos(angle)), (float) (p * distance * Math.sin(-angle)));
+        canvas.rotate((1-p) * 360);
+       // canvas.drawBitmap(bitmap, -x / 16, -x / 16, mPaint);
+        canvas.drawCircle(0,0,x/8,mPaint);
+        canvas.restore();
+
+        canvas.save();
+        canvas.translate(x, y);
+        canvas.translate((float) (p * distance* Math.cos(-angle)), (float) (p * distance * Math.sin(angle)));
         canvas.rotate(p * 360);
         canvas.drawCircle(0,0,x/4,mPaint);
-      //  canvas.drawBitmap(bitmap, -x / 4, -y / 4, mPaint);
-
+      //  canvas.drawBitmap(bitmap, -x / 16, -x / 16, mPaint);
+        canvas.restore();
+       // canvas.drawBitmap(bitmap, -x / 16, -y / 16, mPaint);
 
         invalidate();
 
 
     }
 
-    public void start() {
+    public void start(final  int position) {
 
-
-
-        float x =(float) Math.cos(directionX);
-        float y = Math.round(Math.sin(directionY)*distance);
-        Log.i("test", "start: "+x);
-
-        animator.setDuration(500);
         animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatMode(ValueAnimator.RESTART);
+        animator.setDuration(800);
+        animator.setInterpolator(new LinearInterpolator());
         animator.start();
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                Random r=new Random();
+                TestTwoView.this.setAngle(r.nextInt());
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                Random r=new Random();
+                TestTwoView.this.setAngle(r.nextInt(360));
+                TestTwoView.this.setDirectionY(r.nextInt(360));
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+              /*  animation.start();
+                isRunning=false;*/
+            }
+        });
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                /*if (animation.getAnimatedFraction()>0.5&&!isRunning){
+                    l.onStart(position+1);
+                    isRunning=true;
+                }*/
+
+
+                Log.i("test", "onAnimationUpdate: "+animation.getCurrentPlayTime());
+                Log.i("test", "onAnimation: "+animation.getAnimatedFraction());
+            }
+        });
+
+        ;
     }
 
 
@@ -106,9 +177,17 @@ public class TestTwoView extends ImageView {
         super.onSizeChanged(w, h, oldw, oldh);
         x = w / 2;
         y = h / 2;
-        bitmap = Bitmap.createScaledBitmap(bitmap, h / 4, w / 4, true);
-        distance=h-w;
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.c);
+        bitmap = Bitmap.createScaledBitmap(bitmap, w / 8, w / 8, true);
+        distance=h;
         Log.i("test", "onSizeChanged: "+distance);
 
     }
+
+
+    public interface CanStartListener{
+        void onStart(int  next);
+    }
+
+
 }
