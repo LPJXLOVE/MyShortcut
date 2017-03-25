@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 testTwoView.start();
             }
         });
-        TestThird third= (TestThird) findViewById(R.id.test_);
+      /*  TestThird third= (TestThird) findViewById(R.id.test_);
         third.startAnim();
-
+*/
 
 
         iv.setOnClickListener(new View.OnClickListener() {

@@ -27,25 +27,25 @@ public class TestThird extends FrameLayout {
         r=new Random();
         for (int i=0;i<3;i++){
             TestTwoView t=new TestTwoView(getContext());
-            t.setDirectionX(r.nextInt(2));
-            t.setDirectionY(r.nextInt(2));
+            t.setDirectionX(r.nextInt(360));
+            t.setDirectionY(r.nextInt(360));
             addView(t);
         } for (int i=0;i<3;i++){
             TestTwoView t=new TestTwoView(getContext());
-            t.setDirectionX(-(r.nextInt(2)));
-            t.setDirectionY(-(r.nextInt(3)));
+            t.setDirectionX(-(r.nextInt(360)));
+            t.setDirectionY(-(r.nextInt(360)));
             addView(t);
         }
         for (int i=0;i<3;i++){
             TestTwoView t=new TestTwoView(getContext());
-            t.setDirectionX((r.nextInt(2)));
-            t.setDirectionY(-(r.nextInt(3)));
+            t.setDirectionX((r.nextInt(360)));
+            t.setDirectionY(-(r.nextInt(360)));
             addView(t);
         }
         for (int i=0;i<3;i++){
             TestTwoView t=new TestTwoView(getContext());
-            t.setDirectionX(-(r.nextInt(2)));
-            t.setDirectionY((r.nextInt(3)));
+            t.setDirectionX(-(r.nextInt(360)));
+            t.setDirectionY((r.nextInt(360)));
             addView(t);
         }
 
