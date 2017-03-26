@@ -106,20 +106,39 @@ public class TestTwoView extends ImageView {
         float p = animator.getAnimatedFraction();
         canvas.save();
         canvas.translate(x, y);
-        canvas.translate((float) (p * distance* Math.cos(angle)), (float) (p * distance * Math.sin(-angle)));
+        canvas.translate((float) (p * distance* Math.cos(angle)), (float) (p * distance * Math.sin(angle)));
         canvas.rotate((1-p) * 360);
        // canvas.drawBitmap(bitmap, -x / 16, -x / 16, mPaint);
         canvas.drawCircle(0,0,x/8,mPaint);
         canvas.restore();
 
-        canvas.save();
+    /*    canvas.save();
         canvas.translate(x, y);
-        canvas.translate((float) (p * distance* Math.cos(-angle)), (float) (p * distance * Math.sin(angle)));
+        canvas.translate((float) (p * distance* Math.cos(angle+270)), (float) (p * distance * Math.sin(angle+270)));
         canvas.rotate(p * 360);
         canvas.drawCircle(0,0,x/4,mPaint);
       //  canvas.drawBitmap(bitmap, -x / 16, -x / 16, mPaint);
+        canvas.restore();*/
+
+
+
+      /*  canvas.save();
+        canvas.translate(x, y);
+        canvas.translate((float) (p * distance* Math.cos(angle+90)), (float) (p * distance * Math.sin(angle+90)));
+        canvas.rotate(p * 360);
+        canvas.drawCircle(0,0,x/8,mPaint);
+      //  canvas.drawBitmap(bitmap, -x / 16, -x / 16, mPaint);
+        canvas.restore();*/
+
+
+        canvas.save();
+        canvas.translate(x, y);
+        canvas.translate((float) (p * distance* Math.cos(angle+180)), (float) (p * distance * Math.sin(angle+180)));
+        canvas.rotate(p * 360);
+        canvas.drawCircle(0,0,x/5,mPaint);
+      //  canvas.drawBitmap(bitmap, -x / 16, -x / 16, mPaint);
         canvas.restore();
-       // canvas.drawBitmap(bitmap, -x / 16, -y / 16, mPaint);
+
 
         invalidate();
 
@@ -130,7 +149,7 @@ public class TestTwoView extends ImageView {
 
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.RESTART);
-        animator.setDuration(800);
+        animator.setDuration(650);
         animator.setInterpolator(new LinearInterpolator());
         animator.start();
         animator.addListener(new AnimatorListenerAdapter() {

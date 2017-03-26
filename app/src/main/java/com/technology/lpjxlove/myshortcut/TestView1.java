@@ -58,7 +58,7 @@ public class TestView1 extends View {
         canvas.drawBitmap(bitmap,0,0,mPaint2);
         mPaint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
         canvas.drawRect(0,0,getWidth(),getWidth(),mPaint2);
-        canvas.drawCircle(getWidth()/2,getWidth()/2,getWidth()/4,mPaint);
+       // canvas.drawCircle(getWidth()/2,getWidth()/2,getWidth()/8,mPaint);
         invalidate();
 
     }

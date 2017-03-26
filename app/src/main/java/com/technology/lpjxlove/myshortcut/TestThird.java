@@ -77,7 +77,7 @@ public class TestThird extends FrameLayout implements TestTwoView.CanStartListen
                 TestTwoView t= (TestTwoView) getChildAt(count);
 
                 t.start(0);
-                mHandler.postDelayed(runnable, 300);
+                mHandler.postDelayed(runnable, 750);
             /*    for (int i = 0; i < 3; i++) {
                     circleView = new TestTwoView(getContext());
                     circleView.setAngle(r.nextInt(360));
